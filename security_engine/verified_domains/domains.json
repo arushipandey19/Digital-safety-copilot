@@ -1,0 +1,38 @@
+{
+  "banks": [
+    "hdfcbank.com",
+    "icicibank.com",
+    "sbi.co.in",
+    "axisbank.com",
+    "kotak.com",
+    "pnbindia.in"
+  ],
+  "payment": [
+    "paytm.com",
+    "phonepe.com",
+    "razorpay.com",
+    "bhimupi.org.in"
+  ],
+  "ecommerce": [
+    "amazon.in",
+    "flipkart.com",
+    "myntra.com",
+    "meesho.com"
+  ],
+  "delivery": [
+    "indiapost.gov.in",
+    "delhivery.com",
+    "bluedart.com",
+    "dtdc.in"
+  ],
+  "government": [
+    "uidai.gov.in",
+    "incometax.gov.in",
+    "passportindia.gov.in"
+  ],
+  "email_tech": [
+    "google.com",
+    "microsoft.com",
+    "apple.com"
+  ]
+}
