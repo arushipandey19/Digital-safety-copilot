@@ -2,6 +2,8 @@
 __pycache__/
 *.py[codz]
 *$py.class
+Dataset.csv
+*.pkl
 
 # C extensions
 *.so
