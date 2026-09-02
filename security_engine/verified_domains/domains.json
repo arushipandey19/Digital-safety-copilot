@@ -1,0 +1,127 @@
+{
+  "banks": [
+    "hdfcbank.com",
+    "icicibank.com",
+    "axisbank.com",
+    "kotak.com",
+    "pnbindia.in",
+    "bankofbaroda.in",
+    "canarabank.com",
+    "unionbankofindia.co.in",
+    "idbibank.in",
+    "yesbank.in",
+    "indusind.com",
+    "rblbank.com",
+    "federalbank.co.in",
+    "idfcfirstbank.com",
+    "m.icicibank.com",
+    "sbi.co.in",
+    "sbi.bank.in",
+    "onlinesbi.sbi.bank.in",
+    "yonobusiness.sbi",
+    "homeloans.sbi",
+    "sbiepay.sbi",
+    "customer.sbiunipay.sbi.bank.in"
+  ],
+  "payment": [
+    "paytm.com",
+    "phonepe.com",
+    "razorpay.com",
+    "bhimupi.org.in",
+    "mobikwik.com",
+    "freecharge.in",
+    "cred.club",
+    "google.com",
+    "amazonpay.in"
+  ],
+  "ecommerce": [
+    "amazon.in",
+    "flipkart.com",
+    "myntra.com",
+    "meesho.com",
+    "ajio.com",
+    "nykaa.com",
+    "snapdeal.com",
+    "tatacliq.com",
+    "shopclues.com"
+  ],
+  "delivery": [
+    "indiapost.gov.in",
+    "delhivery.com",
+    "bluedart.com",
+    "dtdc.in",
+    "ekart.in",
+    "shiprocket.in",
+    "fedex.com",
+    "dhl.com",
+    "ups.com"
+  ],
+  "government": [
+    "uidai.gov.in",
+    "incometax.gov.in",
+    "passportindia.gov.in",
+    "epfindia.gov.in",
+    "digilocker.gov.in",
+    "gst.gov.in",
+    "mygov.in",
+    "india.gov.in",
+    "rbi.org.in"
+  ],
+  "email_tech": [
+    "google.com",
+    "microsoft.com",
+    "apple.com",
+    "yahoo.com",
+    "outlook.com",
+    "protonmail.com"
+  ],
+  "telecom": [
+    "jio.com",
+    "airtel.in",
+    "myvi.in",
+    "bsnl.co.in"
+  ],
+  "insurance": [
+    "licindia.in",
+    "hdfclife.com",
+    "iciciprulife.com",
+    "starhealth.in",
+    "policybazaar.com"
+  ],
+  "travel": [
+    "irctc.co.in",
+    "makemytrip.com",
+    "goibibo.com",
+    "yatra.com",
+    "cleartrip.com",
+    "indigo.in",
+    "airindia.in"
+  ],
+  "social_media": [
+    "facebook.com",
+    "instagram.com",
+    "whatsapp.com",
+    "twitter.com",
+    "x.com",
+    "linkedin.com",
+    "telegram.org"
+  ],
+  "streaming_entertainment": [
+    "netflix.com",
+    "hotstar.com",
+    "primevideo.com",
+    "spotify.com",
+    "youtube.com"
+  ],
+  "food_delivery": [
+    "zomato.com",
+    "swiggy.com"
+  ],
+  "education": [
+    "byjus.com",
+    "unacademy.com",
+    "upgrad.com",
+    "coursera.org",
+    "nptel.ac.in"
+  ]
+}
