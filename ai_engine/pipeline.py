@@ -24,9 +24,9 @@ Output: the final structured JSON from the LLM reasoning layer -
     }
 """
 
-from ml_signal_extractor import get_ml_evidence
-from rule_engine import run_security_engine
-from llm import reason_over_evidence
+from ai_engine.ml_signal_extractor import get_ml_evidence
+from ai_engine.rule_engine import run_security_engine
+from ai_engine.llm import reason_over_evidence
 
 
 def analyze(extracted_data: dict) -> dict:
@@ -55,26 +55,6 @@ def analyze(extracted_data: dict) -> dict:
 
 
 def analyze_from_extraction(extraction_output: dict, image_path: str = None) -> dict:
-    """
-    THE FUNCTION MEMBER 2 SHOULD CALL.
-
-    Accepts pipeline_service.run_pipeline()'s actual output shape as-is:
-        {
-            "input_type": str,
-            "text": str,
-            "urls": list[str],
-            "claimed_organization": str,
-            "entities": {"phone_numbers": [...], "emails": [...]}
-        }
-
-    Bridges the field-name difference ("text" -> "extracted_text")
-    internally, so Member 2 never needs to know or care about the
-    ai_engine contract's exact key names - they just pass their own
-    extraction output straight through.
-
-    image_path is passed separately since run_pipeline() consumes the
-    uploaded file but doesn't return the path in its output dict.
-    """
     bridged_input = {
         "extracted_text": extraction_output.get("text", "") or "",
         "urls": extraction_output.get("urls", []) or [],
@@ -82,7 +62,12 @@ def analyze_from_extraction(extraction_output: dict, image_path: str = None) -> 
         "image_path": image_path,
     }
 
-    return analyze(bridged_input)
+    final_result = analyze(bridged_input)
+
+    return {
+        **extraction_output,
+        **final_result
+    }
 
 
 if __name__ == "__main__":

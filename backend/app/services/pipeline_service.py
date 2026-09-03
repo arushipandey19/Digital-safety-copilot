@@ -1,6 +1,7 @@
 from app.services.ocr_service import extract_text_from_image
 from app.services.url_extractor import extract_urls
 from app.services.entity_extractor import extract_entities
+from ai_engine.pipeline import analyze_from_extraction
 
 
 def run_pipeline(input_type, text="", image_path=None, url=""):
@@ -19,7 +20,7 @@ def run_pipeline(input_type, text="", image_path=None, url=""):
 
     entities = extract_entities(extracted_text)
 
-    return {
+    extraction_output = {
         "input_type": input_type,
         "text": extracted_text,
         "urls": urls,
@@ -29,3 +30,7 @@ def run_pipeline(input_type, text="", image_path=None, url=""):
             "emails": entities["emails"]
         }
     }
+
+    final_result = analyze_from_extraction(extraction_output, image_path)
+
+    return final_result
