@@ -1,3 +1,4 @@
+import React from "react";
 export default function RiskCard({ risk }) {
   const className = risk.level.toLowerCase();
 

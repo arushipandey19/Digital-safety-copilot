@@ -1,3 +1,4 @@
+import React from "react";
 export default function EvidenceChain({ chain = [] }) {
   return (
     <section className="panel">

@@ -1,3 +1,4 @@
+import React from "react";
 export default function IndicatorList({ indicators = [], mlPrediction }) {
   return (
     <section className="panel">

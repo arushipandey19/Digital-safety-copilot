@@ -1,3 +1,4 @@
+import React from "react";
 export default function WhyPanel({ explanation }) {
   return (
     <section className="panel">

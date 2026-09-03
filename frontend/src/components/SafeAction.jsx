@@ -1,3 +1,4 @@
+import React from "react";
 export default function SafeAction({ actions = [] }) {
   return (
     <section className="panel safe-panel">
