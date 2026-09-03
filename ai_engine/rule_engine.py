@@ -1,57 +1,17 @@
-"""
-rule_engine.py
-
-This is the MAIN entry point for the whole Security Engine.
-Arushi's pipeline_service.py should only ever need to call ONE function
-from your entire module: run_security_engine().
-
-It orchestrates:
-    1. url_analyzer.py       -> URL-based evidence
-    2. phishing_rules.py     -> text-based evidence
-    3. risk_rules.py         -> combines both into one risk score
-
-Input (from the extraction layer):
-    {
-        "extracted_text": "URGENT! Your account will be blocked. Verify now.",
-        "urls": ["http://abc-bank-1ogin.xyz/verify"],
-        "claimed_organization": "ABC Bank"
-    }
-
-Output (the full "security_evidence" block that later goes to the
-LLM correlation layer, once that's built by the team):
-    {
-        "domain_mismatch": True,
-        "possible_typosquatting": True,
-        "suspicious_tld": True,
-        "raw_ip_used": False,
-        "excessive_subdomains": False,
-        "urgency": True,
-        "credential_request": True,
-        "threat_detected": False,
-        "reward_bait": False,
-        "excessive_punctuation": True,
-        "matched_phrases": ["urgent", "verify your password"],
-        "risk_score": 90,
-        "risk_level": "HIGH",
-        "triggered_flags": [...],
-        "url_details": [...]
-    }
-"""
-
 import sys
 import os
 
-# Make sibling packages (url/) importable whether this file is run
-# directly or imported as part of the security_engine package.
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "url"))
+# This file lives in ai_engine/. The rule modules it needs live in
+# security_engine/rules/ and security_engine/url/ - both are siblings
+# of ai_engine at the project root level, so we go up one and back down.
+_PROJECT_ROOT = os.path.join(os.path.dirname(__file__), "..")
 
-try:
-    from ..url.url_analyzer import analyze_urls
-except (ImportError, ValueError):
-    from url_analyzer import analyze_urls
+sys.path.append(os.path.join(_PROJECT_ROOT, "security_engine", "url"))
+sys.path.append(os.path.join(_PROJECT_ROOT, "security_engine", "rules"))
 
-from .phishing_rules import run_all_phishing_rules
-from .risk_rules import calculate_risk_score
+from url_analyser import analyze_urls          # security_engine/url/url_analyser.py
+from phishing_rules import run_all_phishing_rules  # security_engine/rules/phishing_rules.py
+from risk_rules import calculate_risk_score        # security_engine/rules/risk_rules.py
 
 
 def run_security_engine(extracted_data: dict) -> dict:
