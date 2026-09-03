@@ -331,8 +331,6 @@ if __name__ == "__main__":
                 "verify your password"
             ],
 
-            "risk_score": 8,
-
             "risk_level": "HIGH",
 
             "triggered_flags": [
