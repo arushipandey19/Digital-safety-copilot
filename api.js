@@ -7,12 +7,12 @@ export async function analyzeInput({ type, text, url, file }) {
   form.append("url", url || "");
 
   if (file) {
-    form.append("file", file);
+    form.append("image", file);
   }
 
   const response = await fetch(`${API}/analyze`, {
     method: "POST",
-    body: form
+    body: form,
   });
 
   if (!response.ok) {
