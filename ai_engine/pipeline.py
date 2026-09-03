@@ -31,7 +31,9 @@ from llm import reason_over_evidence
 
 def analyze(extracted_data: dict) -> dict:
     """
-    The single function Member 2's backend will call.
+    Internal entry point. Expects the ai_engine contract exactly:
+        {"extracted_text": str, "urls": list[str],
+         "claimed_organization": str|None, "image_path": str|None}
     """
 
     # 1. Get ML evidence (text classifier + QR detection)
@@ -52,6 +54,37 @@ def analyze(extracted_data: dict) -> dict:
     return final_result
 
 
+def analyze_from_extraction(extraction_output: dict, image_path: str = None) -> dict:
+    """
+    THE FUNCTION MEMBER 2 SHOULD CALL.
+
+    Accepts pipeline_service.run_pipeline()'s actual output shape as-is:
+        {
+            "input_type": str,
+            "text": str,
+            "urls": list[str],
+            "claimed_organization": str,
+            "entities": {"phone_numbers": [...], "emails": [...]}
+        }
+
+    Bridges the field-name difference ("text" -> "extracted_text")
+    internally, so Member 2 never needs to know or care about the
+    ai_engine contract's exact key names - they just pass their own
+    extraction output straight through.
+
+    image_path is passed separately since run_pipeline() consumes the
+    uploaded file but doesn't return the path in its output dict.
+    """
+    bridged_input = {
+        "extracted_text": extraction_output.get("text", "") or "",
+        "urls": extraction_output.get("urls", []) or [],
+        "claimed_organization": extraction_output.get("claimed_organization") or None,
+        "image_path": image_path,
+    }
+
+    return analyze(bridged_input)
+
+
 if __name__ == "__main__":
     import json
 
@@ -67,6 +100,22 @@ if __name__ == "__main__":
     result = analyze(sample_input)
 
     print("\n" + "=" * 60)
-    print("FULL PIPELINE RESULT")
+    print("FULL PIPELINE RESULT (via analyze())")
     print("=" * 60)
     print(json.dumps(result, indent=2, ensure_ascii=False))
+
+    # ---- Also test the adapter, using pipeline_service's exact output shape ----
+    sample_extraction_output = {
+        "input_type": "text",
+        "text": "URGENT! Your account will be blocked. Verify your password now!!!",
+        "urls": ["http://abc-bank-1ogin.xyz/verify"],
+        "claimed_organization": "ABC Bank",
+        "entities": {"phone_numbers": [], "emails": []},
+    }
+
+    adapter_result = analyze_from_extraction(sample_extraction_output)
+
+    print("\n" + "=" * 60)
+    print("FULL PIPELINE RESULT (via analyze_from_extraction() - Member 2's entry point)")
+    print("=" * 60)
+    print(json.dumps(adapter_result, indent=2, ensure_ascii=False))
