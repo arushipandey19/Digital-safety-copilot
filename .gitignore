@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 Dataset.csv
 *.pkl
+ml_engine/augmented_training_data.csv
+ml_engine/combined_training_data.csv
 
 # C extensions
 *.so
