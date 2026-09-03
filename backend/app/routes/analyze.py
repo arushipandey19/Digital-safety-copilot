@@ -5,11 +5,12 @@ from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from typing import Optional
 
 from app.services.pipeline_service import run_pipeline
+from app.schemas.output_schema import AnalysisOutput
 
 router = APIRouter()
 
 
-@router.post("/analyze")
+@router.post("/analyze", response_model=AnalysisOutput)
 async def analyze(
     input_type: str = Form(...),
     text: str = Form(""),
