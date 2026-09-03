@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { analyzeInput } from "./services/api";
 
 const DEMO_TEXT =
@@ -40,7 +40,11 @@ const components = [
     short: "Cross-modal AI",
     description:
       "The reasoning layer connects independent signals instead of relying on one black-box prediction.",
-    points: ["Claim vs evidence", "Cross-modal consistency", "Explainable reasoning"],
+    points: [
+      "Claim vs evidence",
+      "Cross-modal consistency",
+      "Explainable reasoning",
+    ],
   },
 ];
 
@@ -89,6 +93,7 @@ function Icon({ type }) {
     book: "▤",
     help: "?",
   };
+
   return <span className={`icon icon-${type}`}>{map[type] || "•"}</span>;
 }
 
@@ -96,7 +101,10 @@ function Navbar({ onAnalyze }) {
   return (
     <header className="navbar">
       <a className="brand" href="#top" aria-label="Digital Safety Copilot home">
-        <span className="brand-mark"><Icon type="shield" /></span>
+        <span className="brand-mark">
+          <Icon type="shield" />
+        </span>
+
         <span>
           <strong>Digital Safety</strong>
           <small>Copilot</small>
@@ -113,8 +121,13 @@ function Navbar({ onAnalyze }) {
       </nav>
 
       <div className="nav-actions">
-        <button className="login-button" type="button">Log in</button>
-        <button className="nav-cta" type="button" onClick={onAnalyze}>Analyze Now</button>
+        <button className="login-button" type="button">
+          Log in
+        </button>
+
+        <button className="nav-cta" type="button" onClick={onAnalyze}>
+          Analyze Now
+        </button>
       </div>
     </header>
   );
@@ -128,6 +141,7 @@ function EvidenceMockup() {
           <span className="mock-kicker">LIVE ANALYSIS</span>
           <strong>Evidence Chain</strong>
         </div>
+
         <span className="mock-status">● analyzing</span>
       </div>
 
@@ -141,12 +155,16 @@ function EvidenceMockup() {
           <span>CLAIM</span>
           <strong>SBI Bank</strong>
         </div>
+
         <div className="connector" />
+
         <div className="chain-node warn">
           <span>URL</span>
           <strong>sbi-secure-login.xyz</strong>
         </div>
+
         <div className="connector danger-line" />
+
         <div className="chain-node danger">
           <span>MISMATCH</span>
           <strong>Domain not verified</strong>
@@ -154,9 +172,20 @@ function EvidenceMockup() {
       </div>
 
       <div className="mock-signals">
-        <div><span className="signal-dot danger-dot" /> Urgency</div>
-        <div><span className="signal-dot danger-dot" /> OTP request</div>
-        <div><span className="signal-dot warn-dot" /> ML phishing signal</div>
+        <div>
+          <span className="signal-dot danger-dot" />
+          Urgency
+        </div>
+
+        <div>
+          <span className="signal-dot danger-dot" />
+          OTP request
+        </div>
+
+        <div>
+          <span className="signal-dot warn-dot" />
+          ML phishing signal
+        </div>
       </div>
 
       <div className="mock-result">
@@ -164,7 +193,10 @@ function EvidenceMockup() {
           <small>RISK ASSESSMENT</small>
           <strong>HIGH RISK</strong>
         </div>
-        <span>91<span>/100</span></span>
+
+        <span>
+          91<span>/100</span>
+        </span>
       </div>
     </div>
   );
@@ -175,27 +207,48 @@ function Hero({ onAnalyze }) {
     <section className="hero" id="top">
       <div className="hero-copy">
         <div className="eyebrow">AI • SECURITY • EXPLAINABILITY</div>
+
         <h1>
           Make safer digital decisions
           <span> before you click.</span>
         </h1>
+
         <p>
-          Digital Safety Copilot analyzes suspicious messages, links and screenshots,
-          connects the evidence, explains the risk and guides you toward a safer next step.
+          Digital Safety Copilot analyzes suspicious messages, links and
+          screenshots, connects the evidence, explains the risk and guides you
+          toward a safer next step.
         </p>
 
         <div className="hero-actions">
           <button className="primary-button" onClick={onAnalyze} type="button">
             Analyze Something <span>→</span>
           </button>
-          <a className="secondary-link" href="#workflow">Explore how it works ↓</a>
+
+          <a className="secondary-link" href="#workflow">
+            Explore how it works ↓
+          </a>
         </div>
 
         <div className="hero-proof">
-          <div><strong>Text</strong><span>message analysis</span></div>
-          <div><strong>URL</strong><span>domain evidence</span></div>
-          <div><strong>Image</strong><span>OCR + QR</span></div>
-          <div><strong>AI</strong><span>explainable reasoning</span></div>
+          <div>
+            <strong>Text</strong>
+            <span>message analysis</span>
+          </div>
+
+          <div>
+            <strong>URL</strong>
+            <span>domain evidence</span>
+          </div>
+
+          <div>
+            <strong>Image</strong>
+            <span>OCR + QR</span>
+          </div>
+
+          <div>
+            <strong>AI</strong>
+            <span>explainable reasoning</span>
+          </div>
         </div>
       </div>
 
@@ -220,8 +273,8 @@ function VideoSection() {
 
         <p>
           Phishing and online fraud often use urgent messages, fake branding,
-          suspicious links and OTP requests. Watch how simple warning signs
-          can help users pause and verify before taking action.
+          suspicious links and OTP requests. Watch how simple warning signs can
+          help users pause and verify before taking action.
         </p>
 
         <div className="video-meta">
@@ -240,63 +293,72 @@ function VideoSection() {
           playsInline
           preload="auto"
         >
-          <source
-            src="/cyber-fraud-awareness.mp4"
-            type="video/mp4"
-          />
-
+          <source src="/cyber-fraud-awareness.mp4" type="video/mp4" />
           Your browser does not support HTML5 video.
         </video>
 
-        <div className="video-overlay"></div>
+        <div className="video-overlay" />
 
         <div className="video-live">
-          <span className="live-dot"></span>
+          <span className="live-dot" />
           FRAUD AWARENESS
         </div>
 
         <div className="video-caption">
           <strong>Think Before You Click</strong>
-          <span>
-            Suspicious links • OTP scams • Fake messages
-          </span>
+
+          <span>Suspicious links • OTP scams • Fake messages</span>
         </div>
       </div>
     </section>
   );
 }
+
 function OverviewSection() {
   return (
     <section className="overview-section" id="about">
       <div className="section-label">OVERVIEW</div>
+
       <div className="overview-grid">
         <div className="overview-copy">
-          <h2>A safety assistant built around <span>evidence.</span></h2>
+          <h2>
+            A safety assistant built around <span>evidence.</span>
+          </h2>
+
           <p>
-            Instead of asking users to trust a single prediction, Digital Safety Copilot combines
-            extraction, security checks, machine learning and multimodal AI. The result is a simple
-            story: what was claimed, what was found, why the signals matter, and what to do next.
+            Instead of asking users to trust a single prediction, Digital Safety
+            Copilot combines extraction, security checks, machine learning and
+            multimodal AI. The result is a simple story: what was claimed, what
+            was found, why the signals matter, and what to do next.
           </p>
+
           <div className="overview-quote">
             <span>“</span>
-            <strong>We don't just detect what looks suspicious. We show why.</strong>
+            <strong>
+              We don't just detect what looks suspicious. We show why.
+            </strong>
           </div>
         </div>
 
         <div className="overview-art">
           <div className="art-grid" />
+
           <div className="art-card art-card-main">
             <span className="art-chip">CLAIM</span>
             <strong>Organization identity</strong>
             <span>ABC Bank</span>
           </div>
+
           <div className="art-line line-a" />
+
           <div className="art-card art-card-url">
             <span className="art-chip">EVIDENCE</span>
             <strong>Detected destination</strong>
             <span>abc-secure-login.xyz</span>
           </div>
+
           <div className="art-line line-b" />
+
           <div className="art-card art-card-risk">
             <span className="art-chip red-chip">RESULT</span>
             <strong>Evidence mismatch</strong>
@@ -314,22 +376,35 @@ function ComponentShowcase() {
 
   useEffect(() => {
     const section = sectionRef.current;
+
     if (!section) return undefined;
 
     const onWheel = (event) => {
       const rect = section.getBoundingClientRect();
-      const inZone = rect.top < window.innerHeight * 0.35 && rect.bottom > window.innerHeight * 0.65;
+
+      const inZone =
+        rect.top < window.innerHeight * 0.35 &&
+        rect.bottom > window.innerHeight * 0.65;
+
       if (!inZone) return;
       if (Math.abs(event.deltaY) < 10) return;
+
       event.preventDefault();
+
       setActive((current) => {
-        if (event.deltaY > 0) return Math.min(components.length - 1, current + 1);
+        if (event.deltaY > 0) {
+          return Math.min(components.length - 1, current + 1);
+        }
+
         return Math.max(0, current - 1);
       });
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel);
+
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+    };
   }, []);
 
   const selected = components[active];
@@ -338,9 +413,14 @@ function ComponentShowcase() {
     <section className="components-section" id="features" ref={sectionRef}>
       <div className="section-heading centered">
         <div className="eyebrow">KEY COMPONENTS</div>
-        <h2>Everything works as one <span>safety system.</span></h2>
+
+        <h2>
+          Everything works as one <span>safety system.</span>
+        </h2>
+
         <p>
-          Explore the core layers. Scroll or select a card to move through the intelligence pipeline.
+          Explore the core layers. Scroll or select a card to move through the
+          intelligence pipeline.
         </p>
       </div>
 
@@ -350,16 +430,20 @@ function ComponentShowcase() {
           type="button"
           onClick={() => setActive((current) => Math.max(0, current - 1))}
           aria-label="Previous component"
-        >←</button>
+        >
+          ←
+        </button>
 
         <div className="component-cards">
           {components.map((item, index) => {
             const distance = Math.abs(index - active);
-            const className = index === active
-              ? "component-card active-card"
-              : distance === 1
-                ? "component-card near-card"
-                : "component-card far-card";
+
+            const className =
+              index === active
+                ? "component-card active-card"
+                : distance === 1
+                  ? "component-card near-card"
+                  : "component-card far-card";
 
             return (
               <button
@@ -370,7 +454,21 @@ function ComponentShowcase() {
                 aria-pressed={index === active}
               >
                 <div className="component-number">{item.number}</div>
-                <div className="component-icon"><Icon type={index === 0 ? "image" : index === 3 ? "graph" : index === 2 ? "search" : "shield"} /></div>
+
+                <div className="component-icon">
+                  <Icon
+                    type={
+                      index === 0
+                        ? "image"
+                        : index === 3
+                          ? "graph"
+                          : index === 2
+                            ? "search"
+                            : "shield"
+                    }
+                  />
+                </div>
+
                 <strong>{item.title}</strong>
                 <span>{item.short}</span>
               </button>
@@ -381,18 +479,27 @@ function ComponentShowcase() {
         <button
           className="carousel-arrow right-arrow"
           type="button"
-          onClick={() => setActive((current) => Math.min(components.length - 1, current + 1))}
+          onClick={() =>
+            setActive((current) => Math.min(components.length - 1, current + 1))
+          }
           aria-label="Next component"
-        >→</button>
+        >
+          →
+        </button>
       </div>
 
       <div className="component-detail">
         <div className="detail-number">{selected.number}</div>
+
         <div>
           <h3>{selected.title}</h3>
+
           <p>{selected.description}</p>
+
           <div className="detail-points">
-            {selected.points.map((point) => <span key={point}>• {point}</span>)}
+            {selected.points.map((point) => (
+              <span key={point}>• {point}</span>
+            ))}
           </div>
         </div>
       </div>
@@ -426,17 +533,26 @@ function ArchitectureSection() {
     <section className="architecture-section" id="architecture">
       <div className="architecture-copy">
         <div className="eyebrow">SYSTEM ARCHITECTURE</div>
-        <h2>Connect the signals. <span>Explain the decision.</span></h2>
+
+        <h2>
+          Connect the signals. <span>Explain the decision.</span>
+        </h2>
+
         <p>
-          Every stage has a clear responsibility: prepare the evidence, detect signals,
-          correlate them and then present a human-readable safety decision.
+          Every stage has a clear responsibility: prepare the evidence, detect
+          signals, correlate them and then present a human-readable safety
+          decision.
         </p>
 
         <div className="architecture-note">
           <Icon type="graph" />
+
           <div>
             <strong>Evidence-first design</strong>
-            <span>Rules and models provide signals. The reasoning layer connects them.</span>
+            <span>
+              Rules and models provide signals. The reasoning layer connects
+              them.
+            </span>
           </div>
         </div>
       </div>
@@ -445,10 +561,12 @@ function ArchitectureSection() {
         {steps.map(([number, title, text], index) => (
           <div className="architecture-step" key={number}>
             <div className="step-index">{number}</div>
+
             <div className="step-content">
               <strong>{title}</strong>
               <span>{text}</span>
             </div>
+
             {index < steps.length - 1 && <div className="step-arrow">↓</div>}
           </div>
         ))}
@@ -464,8 +582,15 @@ function WorkflowSection() {
     <section className="workflow-section" id="workflow">
       <div className="section-heading centered">
         <div className="eyebrow">HOW IT WORKS</div>
-        <h2>A six-step path from <span>content to clarity.</span></h2>
-        <p>Scroll or select a step. The next stages stay intentionally muted until they matter.</p>
+
+        <h2>
+          A six-step path from <span>content to clarity.</span>
+        </h2>
+
+        <p>
+          Scroll or select a step. The next stages stay intentionally muted
+          until they matter.
+        </p>
       </div>
 
       <div className="workflow-layout">
@@ -474,7 +599,9 @@ function WorkflowSection() {
             <button
               key={item.number}
               type="button"
-              className={index === active ? "workflow-item active" : "workflow-item"}
+              className={
+                index === active ? "workflow-item active" : "workflow-item"
+              }
               onClick={() => setActive(index)}
             >
               <span className="workflow-number">{item.number}</span>
@@ -486,12 +613,23 @@ function WorkflowSection() {
 
         <div className="workflow-feature">
           <div className="feature-step">{workflow[active].number}</div>
-          <div className="feature-icon"><Icon type={active === 1 ? "search" : active === 5 ? "check" : "shield"} /></div>
+
+          <div className="feature-icon">
+            <Icon
+              type={active === 1 ? "search" : active === 5 ? "check" : "shield"}
+            />
+          </div>
+
           <h3>{workflow[active].title}</h3>
+
           <p>{workflow[active].text}</p>
+
           <div className="feature-progress">
             {workflow.map((item, index) => (
-              <span key={item.number} className={index <= active ? "filled" : ""}></span>
+              <span
+                key={item.number}
+                className={index <= active ? "filled" : ""}
+              />
             ))}
           </div>
         </div>
@@ -523,15 +661,23 @@ function SignatureFeatures() {
     <section className="signature-section">
       <div className="section-heading">
         <div className="eyebrow">SIGNATURE FEATURES</div>
-        <h2>Built to make the <span>“why?”</span> visible.</h2>
+
+        <h2>
+          Built to make the <span>“why?”</span> visible.
+        </h2>
       </div>
 
       <div className="signature-grid">
         {cards.map((card) => (
           <article className="signature-card" key={card.title}>
-            <div className="signature-icon"><Icon type={card.icon} /></div>
+            <div className="signature-icon">
+              <Icon type={card.icon} />
+            </div>
+
             <div className="signature-arrow">↗</div>
+
             <h3>{card.title}</h3>
+
             <p>{card.body}</p>
           </article>
         ))}
@@ -542,10 +688,16 @@ function SignatureFeatures() {
 
 function Analyzer({ onClose }) {
   const [type, setType] = useState("text");
+
   const [text, setText] = useState("");
   const [url, setUrl] = useState("");
+
+  // Screenshot file
   const [file, setFile] = useState(null);
+
+  // Screenshot preview
   const [preview, setPreview] = useState("");
+
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -553,27 +705,57 @@ function Analyzer({ onClose }) {
   const runDemo = () => {
     setResult(null);
     setError("");
-    if (type === "text") setText(DEMO_TEXT);
-    if (type === "url") setUrl(DEMO_URL);
+
+    if (type === "text") {
+      setText(DEMO_TEXT);
+    }
+
+    if (type === "url") {
+      setUrl(DEMO_URL);
+    }
   };
 
   const onFile = (event) => {
     const selected = event.target.files?.[0] || null;
+
     setFile(selected);
     setResult(null);
-    if (selected) setPreview(URL.createObjectURL(selected));
-    else setPreview("");
+    setError("");
+
+    if (selected) {
+      setPreview(URL.createObjectURL(selected));
+    } else {
+      setPreview("");
+    }
   };
 
   const analyze = async () => {
-    if (type === "text" && !text.trim()) return setError("Paste a message first.");
-    if (type === "url" && !url.trim()) return setError("Enter a URL first.");
-    if (type === "screenshot" && !file) return setError("Upload a screenshot first.");
+    // Message validation
+    if (type === "text" && !text.trim()) {
+      return setError("Paste a message first.");
+    }
+
+    // URL validation
+    if (type === "url" && !url.trim()) {
+      return setError("Enter a URL first.");
+    }
+
+    // Screenshot/file validation
+    if (type === "screenshot" && !file) {
+      return setError("Upload a screenshot first.");
+    }
 
     setLoading(true);
     setError("");
+
     try {
-      const data = await analyzeInput({ type, text, url, file });
+      const data = await analyzeInput({
+        type,
+        text,
+        url,
+        file,
+      });
+
       setResult(data);
     } catch (err) {
       setError(err?.message || "Unable to analyze this input.");
@@ -583,8 +765,11 @@ function Analyzer({ onClose }) {
   };
 
   const indicators = result?.security_evidence?.indicators || [];
+
   const qrCodes = result?.extracted?.qr_codes || [];
+
   const vision = result?.security_evidence?.visual_analysis;
+
   const ml = result?.security_evidence?.ml_prediction;
 
   return (
@@ -592,10 +777,19 @@ function Analyzer({ onClose }) {
       <div className="analyzer-shell">
         <div className="analyzer-topbar">
           <div className="brand compact">
-            <span className="brand-mark"><Icon type="shield" /></span>
-            <span><strong>Digital Safety</strong><small>Copilot</small></span>
+            <span className="brand-mark">
+              <Icon type="shield" />
+            </span>
+
+            <span>
+              <strong>Digital Safety</strong>
+              <small>Copilot</small>
+            </span>
           </div>
-          <button className="close-button" onClick={onClose} type="button">×</button>
+
+          <button className="close-button" onClick={onClose} type="button">
+            ×
+          </button>
         </div>
 
         <div className="analyzer-body">
@@ -603,19 +797,32 @@ function Analyzer({ onClose }) {
             <>
               <div className="analyzer-heading">
                 <div className="eyebrow">SAFETY ANALYZER</div>
+
                 <h2>What did you receive?</h2>
-                <p>Provide the content. We'll turn it into an evidence trail.</p>
+
+                <p>
+                  Provide the content. We'll turn it into an evidence trail.
+                </p>
               </div>
 
               <div className="analyzer-tabs">
                 {["text", "url", "screenshot"].map((item) => (
                   <button
                     key={item}
-                    className={type === item ? "analyzer-tab active" : "analyzer-tab"}
-                    onClick={() => setType(item)}
+                    className={
+                      type === item ? "analyzer-tab active" : "analyzer-tab"
+                    }
+                    onClick={() => {
+                      setType(item);
+                      setError("");
+                    }}
                     type="button"
                   >
-                    {item === "text" ? "Message" : item === "url" ? "URL" : "Screenshot"}
+                    {item === "text"
+                      ? "Message"
+                      : item === "url"
+                        ? "URL"
+                        : "Screenshot"}
                   </button>
                 ))}
               </div>
@@ -645,21 +852,34 @@ function Analyzer({ onClose }) {
                   ) : (
                     <>
                       <div className="upload-symbol">↥</div>
+
                       <strong>Drop or choose a screenshot</strong>
+
                       <span>OCR + QR decoding supported</span>
                     </>
                   )}
+
                   <input type="file" accept="image/*" onChange={onFile} />
                 </label>
               )}
 
               <div className="analyzer-actions">
                 {(type === "text" || type === "url") && (
-                  <button className="ghost-button" onClick={runDemo} type="button">
+                  <button
+                    className="ghost-button"
+                    onClick={runDemo}
+                    type="button"
+                  >
                     Try demo
                   </button>
                 )}
-                <button className="primary-button" onClick={analyze} disabled={loading} type="button">
+
+                <button
+                  className="primary-button"
+                  onClick={analyze}
+                  disabled={loading}
+                  type="button"
+                >
                   {loading ? "Analyzing..." : "Analyze Safety →"}
                 </button>
               </div>
@@ -671,33 +891,59 @@ function Analyzer({ onClose }) {
               <div className="result-heading-row">
                 <div>
                   <div className="eyebrow">ASSESSMENT COMPLETE</div>
+
                   <h2>Safety Report</h2>
                 </div>
-                <button className="ghost-button" onClick={() => setResult(null)} type="button">New analysis</button>
+
+                <button
+                  className="ghost-button"
+                  onClick={() => {
+                    setResult(null);
+                    setError("");
+                  }}
+                  type="button"
+                >
+                  New analysis
+                </button>
               </div>
 
-              <div className={`result-hero ${result.risk.level.toLowerCase()}`}>
+              <div
+                className={`result-hero ${(result.risk_level || "unknown").toLowerCase()}`}
+              >
                 <div>
                   <small>AI-ASSISTED RISK ASSESSMENT</small>
-                  <strong>{result.risk.level} RISK</strong>
+
+                  <strong>{result.risk_level || "UNKNOWN"} RISK</strong>
                 </div>
-                <span>{result.risk.score}<em>/100</em></span>
               </div>
 
               <div className="result-columns">
                 <section className="result-panel">
                   <div className="result-panel-title">Detected Indicators</div>
-                  {indicators.length ? indicators.map((item) => (
-                    <div className="result-indicator" key={item.code}>
-                      <div><span className="indicator-dot" /> <strong>{item.label}</strong></div>
-                      <small>{item.evidence}</small>
-                    </div>
-                  )) : <p className="result-muted">No strong deterministic indicators were detected.</p>}
+
+                  {indicators.length ? (
+                    indicators.map((item) => (
+                      <div className="result-indicator" key={item.code}>
+                        <div>
+                          <span className="indicator-dot" />
+                          <strong>{item.label}</strong>
+                        </div>
+
+                        <small>{item.evidence}</small>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="result-muted">
+                      No strong deterministic indicators were detected.
+                    </p>
+                  )}
 
                   {ml?.available && (
                     <div className="ml-signal">
                       <span>ML language signal</span>
+
                       <strong>{ml.label}</strong>
+
                       <em>{Math.round(ml.confidence * 100)}%</em>
                     </div>
                   )}
@@ -705,15 +951,22 @@ function Analyzer({ onClose }) {
 
                 <section className="result-panel safe-result">
                   <div className="result-panel-title">Safe Next Action</div>
-                  {(result.risk.safe_actions || []).map((action, index) => (
-                    <div className="safe-action" key={index}><span>✓</span>{action}</div>
+
+                  {(result.safe_actions || []).map((action, index) => (
+                    <div className="safe-action" key={index}>
+                      <span>✓</span>
+                      {action}
+                    </div>
                   ))}
                 </section>
               </div>
 
               <section className="result-panel">
                 <div className="result-panel-title">Why?</div>
-                <p className="why-text">{result.risk.explanation}</p>
+
+                <p className="why-text">
+                  {result.explanation || "No explanation was returned."}
+                </p>
               </section>
 
               {(qrCodes.length > 0 || vision?.available) && (
@@ -721,10 +974,16 @@ function Analyzer({ onClose }) {
                   {qrCodes.length > 0 && (
                     <section className="result-panel">
                       <div className="result-panel-title">QR Content</div>
+
                       {qrCodes.map((qr) => (
-                        <div className="qr-result" key={`${qr.index}-${qr.decoded_value}`}>
+                        <div
+                          className="qr-result"
+                          key={`${qr.index}-${qr.decoded_value}`}
+                        >
                           <span>QR #{qr.index}</span>
+
                           <strong>{qr.content_type.toUpperCase()}</strong>
+
                           <small>{qr.decoded_value}</small>
                         </div>
                       ))}
@@ -734,11 +993,36 @@ function Analyzer({ onClose }) {
                   {vision?.available && (
                     <section className="result-panel">
                       <div className="result-panel-title">Vision Evidence</div>
+
                       <div className="vision-grid">
-                        <span>Branding: <strong>{vision.visible_brand_or_organization || "Not detected"}</strong></span>
-                        <span>Login / Verify: <strong>{vision.login_or_verification_ui ? "Yes" : "No"}</strong></span>
-                        <span>Payment prompt: <strong>{vision.payment_prompt ? "Yes" : "No"}</strong></span>
-                        <span>Embedded image: <strong>{vision.embedded_image_present ? "Yes" : "No"}</strong></span>
+                        <span>
+                          Branding:{" "}
+                          <strong>
+                            {vision.visible_brand_or_organization ||
+                              "Not detected"}
+                          </strong>
+                        </span>
+
+                        <span>
+                          Login / Verify:{" "}
+                          <strong>
+                            {vision.login_or_verification_ui ? "Yes" : "No"}
+                          </strong>
+                        </span>
+
+                        <span>
+                          Payment prompt:{" "}
+                          <strong>
+                            {vision.payment_prompt ? "Yes" : "No"}
+                          </strong>
+                        </span>
+
+                        <span>
+                          Embedded image:{" "}
+                          <strong>
+                            {vision.embedded_image_present ? "Yes" : "No"}
+                          </strong>
+                        </span>
                       </div>
                     </section>
                   )}
@@ -747,11 +1031,21 @@ function Analyzer({ onClose }) {
 
               <section className="result-panel evidence-result">
                 <div className="result-panel-title">🔍 Evidence Chain</div>
+
                 <div className="result-chain">
                   {(result.evidence_chain || []).map((entry, index) => (
-                    <div className={`result-chain-row ${entry.status}`} key={`${entry.step}-${index}`}>
-                      <span className="chain-index">{String(index + 1).padStart(2, "0")}</span>
-                      <div><strong>{entry.step}</strong><small>{entry.detail}</small></div>
+                    <div
+                      className={`result-chain-row ${entry.status}`}
+                      key={`${entry.step}-${index}`}
+                    >
+                      <span className="chain-index">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <div>
+                        <strong>{entry.step}</strong>
+                        <small>{entry.detail}</small>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -769,9 +1063,16 @@ function Footer() {
     <footer className="footer" id="help">
       <div>
         <div className="brand compact">
-          <span className="brand-mark"><Icon type="shield" /></span>
-          <span><strong>Digital Safety</strong><small>Copilot</small></span>
+          <span className="brand-mark">
+            <Icon type="shield" />
+          </span>
+
+          <span>
+            <strong>Digital Safety</strong>
+            <small>Copilot</small>
+          </span>
         </div>
+
         <p>Detect. Explain. Guide.</p>
       </div>
 
@@ -792,22 +1093,34 @@ export default function App() {
 
   useEffect(() => {
     document.body.style.overflow = analyzerOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [analyzerOpen]);
 
   return (
     <div className="site-shell">
       <Navbar onAnalyze={() => setAnalyzerOpen(true)} />
+
       <main>
         <Hero onAnalyze={() => setAnalyzerOpen(true)} />
+
         <VideoSection />
+
         <OverviewSection />
+
         <ComponentShowcase />
+
         <ArchitectureSection />
+
         <WorkflowSection />
+
         <SignatureFeatures />
       </main>
+
       <Footer />
+
       {analyzerOpen && <Analyzer onClose={() => setAnalyzerOpen(false)} />}
     </div>
   );
