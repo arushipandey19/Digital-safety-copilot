@@ -1,0 +1,41 @@
+text,expected_label,category
+"Dear customer your SBI account will be blocked today update KYC immediately click here",1,bank_kyc_scam
+"Your HDFC Bank account has been temporarily suspended. Verify now: hdfc-verify-secure.tk",1,bank_kyc_scam
+"ICICI Alert: Unusual activity detected on your account. Confirm identity within 24 hrs or account will be locked.",1,bank_kyc_scam
+"PNB customer, your Aadhaar linking is incomplete. Complete now to avoid account freeze: pnb-aadhaar-link.info",1,bank_kyc_scam
+"Congratulations you have won Rs 50000 lottery claim now by sharing OTP",1,fake_reward
+"Aapko Airtel ki taraf se 25000 rupay ka reward mila hai. Claim karne ke liye link par click karein.",1,fake_reward
+"You have been selected for KBC lucky draw winner of Rs 25 lakhs. Contact immediately to claim.",1,fake_reward
+"Flipkart Big Billion Day: You are our lucky 100th customer! Win an iPhone free, just pay Rs 99 shipping.",1,fake_reward
+"Your Blue Dart package could not be delivered. Pay Rs 15 customs fee to reschedule: bluedart-fee.xyz",1,fake_delivery
+"India Post: Your parcel is held at customs. Pay pending duty of Rs 250 to release: indiapost-duty.net",1,fake_delivery
+"Delhivery: Failed delivery attempt. Update your address and pay Rs 20 redelivery charge here.",1,fake_delivery
+"Aapka Amazon order deliver nahi ho paya address ki wajah se. Turant Rs 49 pay karke confirm karein.",1,fake_delivery
+"We need your UPI PIN to verify your refund of Rs 499 from Flipkart.",1,credential_scam
+"Your bank has requested OTP verification to process your pending transaction. Share the OTP received.",1,credential_scam
+"RBI mandates KYC update. Share your debit card number and CVV to continue banking services.",1,credential_scam
+"Paytm: Verify your account by entering your UPI PIN on this page to avoid suspension.",1,credential_scam
+"Click here to verify: http://192.168.44.21-secure-login.tk/verify",1,suspicious_url
+"Your account needs update - visit bit.ly/3xKq9pL immediately",1,suspicious_url
+"Confirm your details at http://sbi-online-banking.verify-kyc.xyz/login",1,suspicious_url
+"Urgent action needed: axis-bank-secure.duckdns.org/confirm",1,suspicious_url
+"Job offer: Work from home, earn Rs 5000/day. Send Rs 500 registration fee to secure your position.",1,fake_job_offer
+"Visa consultancy: Your Canada visa is approved. Pay processing fee of Rs 15000 to proceed.",1,fake_job_offer
+"URGENT: Your electricity connection will be cut in 2 hours, pay now to avoid disconnection",1,fake_delivery
+"DISCOM Alert: Your power will be disconnected tonight due to unpaid bill. Pay immediately: discom-pay.cc",1,fake_delivery
+"Hi Rohan, are we still meeting for coffee at 5?",0,safe_everyday
+"Reminder: Your electricity bill of Rs 1,240 is due on 3rd Sept. Pay via the official MSEDCL app.",0,safe_everyday
+"Vi: Your recharge of INR 2GB/day for 396 is successful. Valid till 15th Sept.",0,safe_everyday
+"Your Amazon order has been shipped, track here: amazon.in/track/order123",0,safe_everyday
+"Hey are we still on for lunch tomorrow?",0,safe_everyday
+"Aapka Swiggy order 10 minute mein deliver ho jayega.",0,safe_everyday
+"Your flight AI 202 departs in 2 hours. Please reach the airport gate by 6:30 PM.",0,safe_urgent_legit
+"IRCTC: Your PNR 4523167890 is confirmed for train 12345 on 5th Sept.",0,safe_everyday
+"Your OTP for login is 482913. Do not share this with anyone.",0,safe_everyday
+"Zomato: Your order has been delivered. Rate your experience!",0,safe_everyday
+"Reminder from HDFC Bank: Your credit card bill of Rs 4,500 is due on 10th Sept. Pay via HDFC app.",0,safe_everyday
+"Meeting shifted to 4 PM tomorrow, please confirm your availability.",0,safe_everyday
+"Your Jio recharge of Rs 299 was successful. Valid for 28 days.",0,safe_everyday
+"EPFO: Your PF withdrawal request has been processed successfully.",0,safe_everyday
+"Mom, call me when you're free, need to discuss something.",0,safe_everyday
+"Your Ola cab is arriving in 3 minutes. Driver: Ramesh, KA-01-AB-1234.",0,safe_everyday

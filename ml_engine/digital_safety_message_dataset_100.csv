@@ -1,0 +1,101 @@
+﻿id,message,label,category,is_fraud
+1,Your SBI account statement is now available in the official YONO app. Open the app directly to view it.,0,SAFE,SAFE
+2,HDFC Bank: Your monthly e-statement is available in NetBanking. Log in through the official app or website.,0,SAFE,SAFE
+3,ICICI Bank: Your fixed deposit maturity amount will be credited to your linked account on the agreed maturity date.,0,SAFE,SAFE
+4,"Axis Bank: Your debit card transaction of Rs 1,250 was completed successfully. No action is required.",0,SAFE,SAFE
+5,Your bank has received your request to update communication preferences. No OTP is requested in this message.,0,SAFE,SAFE
+6,Your KYC appointment is confirmed for tomorrow at 11:00 AM. Please carry the requested documents to the branch.,0,SAFE,SAFE
+7,Amazon: Your order has been shipped. Track it by opening the Amazon app and viewing Your Orders.,0,SAFE,SAFE
+8,Flipkart: Your package is out for delivery today. Check the delivery status from the official app.,0,SAFE,SAFE
+9,Your OTP for signing in is 483921. Do not share this code with anyone.,0,SAFE,SAFE
+10,"Your password was changed successfully. If you made this change, no further action is needed.",0,SAFE,SAFE
+11,Your interview with ABC Technologies is scheduled for Monday at 10:00 AM. Use the meeting details shared by the recruiter.,0,SAFE,SAFE
+12,Your internship application has been received. The company will contact you through its official hiring process.,0,SAFE,SAFE
+13,Google: A new sign-in was detected on your account. Review the activity from your Google Account security page.,0,SAFE,SAFE
+14,PayPal: Your payment of $24.99 was completed successfully. View the transaction in your PayPal account.,0,SAFE,SAFE
+15,"Your electricity bill for this month is Rs 1,180. Pay it through your provider's official app or website.",0,SAFE,SAFE
+16,Your UPI payment of Rs 650 to the grocery store was successful. Details are available in your banking app.,0,SAFE,SAFE
+17,Your train ticket booking is confirmed. Open the official railway app to view your PNR and journey details.,0,SAFE,SAFE
+18,The school portal has published your fee receipt. Log in to the official portal to download it.,0,SAFE,SAFE
+19,Your parcel was delivered successfully. Delivery details are available in the official shopping app.,0,SAFE,SAFE
+20,Microsoft: Your security information was updated. Review your account from the official Microsoft account page.,0,SAFE,SAFE
+21,URGENT: Your bank account KYC has expired. Update PAN and Aadhaar immediately or your account will be blocked. Send details on WhatsApp.,1,BANK_KYC,FRAUD_SPAM
+22,SBI KYC ALERT: Your account will be suspended today. Verify KYC and share your OTP to keep banking active.,1,BANK_KYC,FRAUD_SPAM
+23,HDFC NOTICE: KYC renewal pending. Click hxxp://hdfc-kyc-update[.]example to avoid account closure.,1,BANK_KYC,FRAUD_SPAM
+24,"Bank Security: Your debit card has been restricted due to incomplete KYC. Reply with PAN, DOB and OTP.",1,BANK_KYC,FRAUD_SPAM
+25,IMPORTANT BANK UPDATE: Complete digital KYC now and pay Rs 10 verification fee through the link provided.,1,BANK_KYC,FRAUD_SPAM
+26,ICICI KYC TEAM: Your profile is under review. Send your Aadhaar number and selfie for immediate activation.,1,BANK_KYC,FRAUD_SPAM
+27,"Axis Bank Alert: Your KYC is overdue. Enter your card number, CVV and OTP to restore services.",1,BANK_KYC,FRAUD_SPAM
+28,Final Warning: Your bank account will be permanently blocked at 6 PM. Share KYC documents and verification code now.,1,BANK_KYC,FRAUD_SPAM
+29,KYC REFUND NOTICE: A refund is waiting because your KYC details are outdated. Confirm your bank account and OTP.,1,BANK_KYC,FRAUD_SPAM
+30,Bank Compliance Desk: Complete KYC within 30 minutes by clicking the verification link.,1,BANK_KYC,FRAUD_SPAM
+31,"Congratulations! Your mobile number has won Rs 25,00,000 in a Lucky Draw. Pay Rs 4,999 processing fee to claim.",1,LOTTERY_REWARD,FRAUD_SPAM
+32,You are selected for a Mega Lottery prize of Rs 10 lakh. Send ID proof and bank details to release the reward.,1,LOTTERY_REWARD,FRAUD_SPAM
+33,WINNER ALERT: Your number won a cash reward. Contact the claim officer on WhatsApp and pay the refundable registration charge.,1,LOTTERY_REWARD,FRAUD_SPAM
+34,Lucky draw result: You have won a new car plus Rs 5 lakh. Click the claim link and submit personal details.,1,LOTTERY_REWARD,FRAUD_SPAM
+35,"Amazon Reward Lottery: Your number has been chosen for Rs 50,000 cashback. Pay a verification fee to receive it.",1,LOTTERY_REWARD,FRAUD_SPAM
+36,"FINAL WINNER NOTICE: Prize of Rs 15,00,000 reserved for you. Share your OTP with the claim manager.",1,LOTTERY_REWARD,FRAUD_SPAM
+37,Government-style Prize Notice: Your phone number qualifies for a special reward. Pay tax through the provided link.,1,LOTTERY_REWARD,FRAUD_SPAM
+38,"Festival Lucky Draw: You won Rs 2,50,000. Send PAN and bank account details to process the transfer.",1,LOTTERY_REWARD,FRAUD_SPAM
+39,Mega Jackpot winner: Your ticket number matches the winning entry. Call the claim number to receive your cash reward.,1,LOTTERY_REWARD,FRAUD_SPAM
+40,Reward Department: Your prize expires tonight. Submit ID and Rs 999 release charges immediately.,1,LOTTERY_REWARD,FRAUD_SPAM
+41,Security alert: Unusual activity detected. Verify your account now at hxxp://secure-login[.]example to prevent suspension.,1,URL_PHISHING,FRAUD_SPAM
+42,Your payment account needs confirmation. Open hxxp://account-verify[.]example and enter your login details.,1,URL_PHISHING,FRAUD_SPAM
+43,Important: Your session has expired. Sign in again at hxxp://login-check[.]example to restore access.,1,URL_PHISHING,FRAUD_SPAM
+44,Your account has been selected for a security review. Confirm your identity at hxxp://verify-user[.]example.,1,URL_PHISHING,FRAUD_SPAM
+45,We detected a suspicious login. Review it immediately at hxxp://security-alert[.]example before access is restricted.,1,URL_PHISHING,FRAUD_SPAM
+46,Your parcel cannot be delivered until the address is confirmed. Update details at hxxp://delivery-update[.]example.,1,URL_PHISHING,FRAUD_SPAM
+47,Payment failed. Reconfirm your card information at hxxp://payment-retry[.]example to avoid cancellation.,1,URL_PHISHING,FRAUD_SPAM
+48,KYC verification required. Continue at hxxp://kyc-portal[.]example and complete the form now.,1,URL_PHISHING,FRAUD_SPAM
+49,Your account will be locked within 2 hours. Verify now at hxxp://urgent-auth[.]example.,1,URL_PHISHING,FRAUD_SPAM
+50,Final security notice: confirm your account at hxxp://identity-check[.]example or access will be disabled.,1,URL_PHISHING,FRAUD_SPAM
+51,Your account is being transferred to another device. Share OTP 483921 with support to cancel the request.,1,OTP,FRAUD_SPAM
+52,OTP required for refund verification. Tell us the 6-digit code sent to your phone to receive your money.,1,OTP,FRAUD_SPAM
+53,Bank support: We need the OTP from your latest message to reverse the failed transaction. Reply immediately.,1,OTP,FRAUD_SPAM
+54,Your card replacement is ready. Share the OTP you received so we can activate the new card.,1,OTP,FRAUD_SPAM
+55,"URGENT: A payment of Rs 18,500 is pending. Send the OTP to the agent to stop the transaction.",1,OTP,FRAUD_SPAM
+56,Verification team here. Forward the OTP received on SMS to complete your KYC update.,1,OTP,FRAUD_SPAM
+57,Your reward cannot be credited without OTP confirmation. Send the code now to release the prize.,1,OTP,FRAUD_SPAM
+58,The recruiter needs the OTP sent to your phone to verify your identity for the job offer.,1,OTP,FRAUD_SPAM
+59,Delivery payment confirmation requires your OTP. Reply with the code to authorize the shipment.,1,OTP,FRAUD_SPAM
+60,Security Desk: OTP is needed to cancel the account closure request. Share it before the timer expires.,1,OTP,FRAUD_SPAM
+61,"Congratulations! You are selected for a work-from-home job paying Rs 80,000 per month. Pay Rs 2,500 registration fee to start.",1,JOB_SCAM,FRAUD_SPAM
+62,"Urgent hiring: Earn Rs 5,000 per day from home. Send Aadhaar, PAN and bank details to complete onboarding.",1,JOB_SCAM,FRAUD_SPAM
+63,"You have been shortlisted for a data entry job. Purchase our training package for Rs 3,999 to confirm your seat.",1,JOB_SCAM,FRAUD_SPAM
+64,HR ALERT: Your resume is selected for a government job. Pay verification charges through UPI to receive the appointment letter.,1,JOB_SCAM,FRAUD_SPAM
+65,"Remote job offer: Salary Rs 1.2 lakh/month. Download the app and deposit Rs 1,000 for employee ID activation.",1,JOB_SCAM,FRAUD_SPAM
+66,"Congratulations, candidate! Your job is approved. Share your bank OTP to activate the payroll account.",1,JOB_SCAM,FRAUD_SPAM
+67,"Part-time job available: Earn money by rating products. First pay a refundable security deposit of Rs 5,000.",1,JOB_SCAM,FRAUD_SPAM
+68,Immediate hiring for a multinational company. No interview required. Send documents and a processing fee today.,1,JOB_SCAM,FRAUD_SPAM
+69,Your profile won our premium recruitment drive. Pay Rs 999 for background verification and guaranteed joining.,1,JOB_SCAM,FRAUD_SPAM
+70,Work-from-home vacancy: Limited seats. Send ID proof plus advance joining fee on WhatsApp.,1,JOB_SCAM,FRAUD_SPAM
+71,Your parcel is on hold because the address is incomplete. Pay Rs 49 delivery correction fee through the link.,1,ORDER_DELIVERY,FRAUD_SPAM
+72,Delivery failed. Confirm your address now and make a small payment to receive your package today.,1,ORDER_DELIVERY,FRAUD_SPAM
+73,Courier alert: Customs charge pending for your parcel. Share card details to release the shipment.,1,ORDER_DELIVERY,FRAUD_SPAM
+74,Your package could not be delivered. Click the link and pay Rs 25 redelivery fee immediately.,1,ORDER_DELIVERY,FRAUD_SPAM
+75,Final attempt: Your parcel will be returned unless you verify your address and enter payment details.,1,ORDER_DELIVERY,FRAUD_SPAM
+76,Shipping Department: Your order contains a high-value item. Pay the verification charge to avoid cancellation.,1,ORDER_DELIVERY,FRAUD_SPAM
+77,"Delivery notice: A package is waiting for you, but the COD amount must be reconfirmed using OTP.",1,ORDER_DELIVERY,FRAUD_SPAM
+78,Your order is blocked due to a billing mismatch. Send your card number and CVV for verification.,1,ORDER_DELIVERY,FRAUD_SPAM
+79,Courier partner: Update your location using the link and pay the address correction charge within 30 minutes.,1,ORDER_DELIVERY,FRAUD_SPAM
+80,Parcel release notice: Pay the pending handling fee now or your shipment will be returned.,1,ORDER_DELIVERY,FRAUD_SPAM
+81,"UPI refund pending. To receive Rs 7,500, approve the collect request sent to your phone.",1,UPI_PAYMENT,FRAUD_SPAM
+82,"You have received a payment request from support. Accept it to get your cashback of Rs 1,999.",1,UPI_PAYMENT,FRAUD_SPAM
+83,"Bank transfer failed. Send Rs 10 first as verification and we will return Rs 5,000 instantly.",1,UPI_PAYMENT,FRAUD_SPAM
+84,"UPI support: To cancel the suspicious payment, approve the collect request appearing in your app.",1,UPI_PAYMENT,FRAUD_SPAM
+85,Cashback winner! Accept this UPI request to receive your reward instantly.,1,UPI_PAYMENT,FRAUD_SPAM
+86,"Your account will receive Rs 12,000 after you confirm the UPI request and enter your PIN.",1,UPI_PAYMENT,FRAUD_SPAM
+87,Refund team: Send your UPI PIN to confirm the reversal of the transaction.,1,UPI_PAYMENT,FRAUD_SPAM
+88,Payment reversal required: Scan the QR code we sent and enter your UPI PIN to receive the refund.,1,UPI_PAYMENT,FRAUD_SPAM
+89,"Special offer: We are sending Rs 3,000 cashback. Approve the incoming collect request now.",1,UPI_PAYMENT,FRAUD_SPAM
+90,"UPI verification: Pay Rs 1 to unlock your refund of Rs 9,999. Complete this within 15 minutes.",1,UPI_PAYMENT,FRAUD_SPAM
+91,Congratulations! You have been specially selected for a FREE smartphone. Claim now before midnight.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+92,Exclusive offer: Get guaranteed double returns every week. Message the investment manager now.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+93,Limited-time deal: You are eligible for a huge cash bonus. Send your details to activate it.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+94,You have been chosen for a secret customer reward. Contact the agent immediately to avoid losing it.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+95,Hot offer: Earn thousands daily from home with zero experience. Join our private group today.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+96,FREE voucher waiting for you. Confirm your mobile number and pay a small activation fee.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+97,Special membership upgrade available only today. Share your details with the representative to unlock benefits.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+98,You are one of 10 lucky users selected for a cash gift. Reply YES and provide your bank details.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+99,Instant money opportunity: Invest today and receive guaranteed profits. Contact the advisor on WhatsApp.,1,PROMOTIONAL_SPAM,FRAUD_SPAM
+100,Your exclusive bonus expires in 1 hour. Click the claim link and complete the payment verification.,1,PROMOTIONAL_SPAM,FRAUD_SPAM

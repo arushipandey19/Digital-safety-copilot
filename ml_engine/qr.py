@@ -1,28 +1,22 @@
-"""
-QR Code Extractor for Screenshots
-----------------------------------
-Detects and decodes QR codes from screenshots using OpenCV.
-
-If a QR code contains a URL:
-    1. Extract the URL
-    2. Send it directly to the existing URL ML classifier
-    3. Return the phishing probability
-
-Usage:
-    python qr.py qrimage.jpeg
-"""
-
 import sys
+import os
 import re
 import cv2
+import json
 
-# Import your existing URL ML classifier
-from url import predict_single_url
+# Route extracted URLs through the RULE-BASED analyzer, not ML.
+# security_engine/url/url_analyser.py lives two folders over from here
+# (ml_engine/qr.py -> ../security_engine/url/url_analyser.py)
+sys.path.append(
+    os.path.join(os.path.dirname(__file__), "..", "security_engine", "url")
+)
+from url_analyser import analyze_urls
 
 
 def extract_qr_data(image_path: str) -> list:
     """
     Detect and decode QR codes from an image.
+    (Unchanged - this part was never ML, purely OpenCV detection.)
     """
 
     img = cv2.imread(image_path)
@@ -137,10 +131,14 @@ def extract_qr_data(image_path: str) -> list:
     return results
 
 
-def analyze_screenshot_qr(image_path: str) -> dict:
+def analyze_screenshot_qr(image_path: str, claimed_organization: str = None) -> dict:
     """
-    Detect QR codes and send extracted URLs to the
-    existing URL ML classifier.
+    Detect QR codes and send extracted URLs to the RULE-BASED
+    security_engine URL analyzer (not ML - that classifier was removed).
+
+    claimed_organization: optional - pass this through if the message
+    text (from OCR, extracted separately) names an organization, so
+    domain-mismatch checking can work. Defaults to None if unknown.
     """
 
     qr_results = extract_qr_data(image_path)
@@ -156,7 +154,7 @@ def analyze_screenshot_qr(image_path: str) -> dict:
             "qr_codes_found": 0,
             "qr_data": [],
             "extracted_urls": [],
-            "url_analysis": [],
+            "url_analysis": {},
             "error": qr_results[0]["error"]
         }
 
@@ -166,36 +164,17 @@ def analyze_screenshot_qr(image_path: str) -> dict:
         if "raw_data" in result
     ]
 
-    extracted_urls = []
-    url_analysis = []
+    extracted_urls = [
+        result["raw_data"]
+        for result in valid_results
+        if result.get("is_url")
+    ]
 
     # ---------------------------------------------------------
-    # Send every extracted URL to existing ML model
+    # Send every extracted URL to the RULE-BASED analyzer as a batch
+    # (analyze_urls handles the empty-list case gracefully too)
     # ---------------------------------------------------------
-    for result in valid_results:
-
-        if result.get("is_url"):
-
-            url = result["raw_data"]
-
-            extracted_urls.append(url)
-
-            try:
-
-                prediction = predict_single_url(url)
-
-                result["ml_prediction"] = prediction
-
-                url_analysis.append(prediction)
-
-            except Exception as e:
-
-                result["ml_prediction_error"] = str(e)
-
-                url_analysis.append({
-                    "url": url,
-                    "error": str(e)
-                })
+    url_analysis = analyze_urls(extracted_urls, claimed_organization)
 
     return {
         "qr_codes_found": len(valid_results),
@@ -214,98 +193,41 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
 
         print("Usage:")
-        print("    python qr.py <path_to_screenshot>")
+        print("    python qr.py <path_to_screenshot> [claimed_organization]")
 
         print("\nExample:")
         print("    python qr.py qrimage.jpeg")
+        print('    python qr.py qrimage.jpeg "SBI"')
 
         sys.exit(1)
 
     image_path = sys.argv[1]
+    claimed_org = sys.argv[2] if len(sys.argv) > 2 else None
 
-    result = analyze_screenshot_qr(image_path)
+    result = analyze_screenshot_qr(image_path, claimed_org)
 
     print()
     print("=" * 60)
     print("QR CODE ANALYSIS")
     print("=" * 60)
 
-    print(
-        f"\nQR codes found: "
-        f"{result['qr_codes_found']}"
-    )
-
-    # ---------------------------------------------------------
-    # Display QR results
-    # ---------------------------------------------------------
+    print(f"\nQR codes found: {result['qr_codes_found']}")
 
     for i, qr in enumerate(result["qr_data"], start=1):
-
         print(f"\nQR Code #{i}")
         print("-" * 40)
-
         print(f"Type     : {qr.get('qr_type')}")
         print(f"Data     : {qr.get('raw_data')}")
         print(f"Is URL   : {qr.get('is_url')}")
         print(f"Position : {qr.get('position')}")
 
-        # -----------------------------------------------------
-        # Display ML prediction
-        # -----------------------------------------------------
-
-        if "ml_prediction" in qr:
-
-            prediction = qr["ml_prediction"]
-
-            probability = prediction.get(
-                "phishing_probability"
-            )
-
-            print("\nURL ML ANALYSIS")
-            print("-" * 40)
-
-            print(
-                f"Phishing Probability : "
-                f"{probability}"
-            )
-
-            # Simple interpretation
-            if probability is not None:
-
-                if probability >= 0.70:
-                    risk = "HIGH RISK"
-
-                elif probability >= 0.40:
-                    risk = "SUSPICIOUS"
-
-                else:
-                    risk = "LOW RISK"
-
-                print(f"Risk Level           : {risk}")
-
-        elif "ml_prediction_error" in qr:
-
-            print(
-                "\nML Analysis Error: "
-                f"{qr['ml_prediction_error']}"
-            )
-
-    # ---------------------------------------------------------
-    # URLs
-    # ---------------------------------------------------------
-
     if result["extracted_urls"]:
-
         print()
         print("=" * 60)
-        print("EXTRACTED URLS")
+        print("RULE-BASED URL ANALYSIS")
         print("=" * 60)
-
-        for url in result["extracted_urls"]:
-            print(url)
-
+        print(json.dumps(result["url_analysis"], indent=2))
     else:
-
         print("\nNo URLs found in any QR code.")
 
     print()
