@@ -232,6 +232,19 @@ a {
   color: var(--primary);
   transform: translateY(-1px);
 }
+.nav-analyze-button {
+  background: #17365d;
+  color: #ffffff;
+  border: 1px solid #17365d;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nav-analyze-button:hover {
+  background: #0f2948;
+}
 
 
 /* =========================================================
@@ -390,7 +403,79 @@ a {
 
   box-shadow: var(--shadow-md);
 }
+.theme-toggle {
+  width: 76px;
+  height: 38px;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 4px 7px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.theme-icon {
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 18px;
+  line-height: 1;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+/* Light mode */
+.theme-toggle.light .sun {
+  background: #fff4c7;
+  color: #e8b51d;
+}
+
+.theme-toggle.light .moon {
+  color: #e8b51d;
+  background: transparent;
+}
+
+/* Dark mode */
+.theme-toggle.dark .sun {
+  color: #9aa9bb;
+  background: transparent;
+}
+
+.theme-toggle.dark .moon {
+  background: #203753;
+  color: #f4c94f;
+}
+
+/* Hover */
+.theme-toggle:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:active {
+  transform: scale(0.96);
+}
 
 /* =========================================================
    SECTION HEADING
@@ -1831,10 +1916,22 @@ textarea {
   .workflow-section,
   .signature-section,
   .analyzer-section {
-    padding-left: 20px;
-
-    padding-right: 20px;
+    background: #17365d;
+    color: #ffffff;
+    border: 1px solid #17365d;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
   }
+
+.nav-analyze-button:hover {
+  padding: 8px 10px;
+  font-size: 11px;
+  background: #0f2948;
+
+}
 
   .hero-section {
     padding-top: 72px;

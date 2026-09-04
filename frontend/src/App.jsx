@@ -13,7 +13,7 @@ import { analyzeInput } from "./services/api";
    NAVBAR
 ========================================================= */
 
-function Navbar({ darkMode, setDarkMode }) {
+function Navbar({ darkMode, setDarkMode, onAnalyze }) {
   return (
     <nav className="navbar">
       <div className="nav-logo">
@@ -21,20 +21,27 @@ function Navbar({ darkMode, setDarkMode }) {
       </div>
 
       <div className="nav-links">
-        <a href="#features">Features</a>
-        <a href="#overview">Overview</a>
-        <a href="#workflow">Workflow</a>
         <a href="#about">About</a>
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
         <a href="#docs">Documentation</a>
+        <button className="primary-button nav-analyze-button"
+          onClick={onAnalyze}
+          type="button">
+          Analyse Now
+        </button>
+        
 
         <button
           type="button"
-          className="theme-toggle"
+          className={`theme-toggle ${darkMode ? "dark" : "light"}`}
           onClick={() => setDarkMode((prev) => !prev)}
           aria-label="Toggle dark and light mode"
           title="Toggle theme"
         >
-          {darkMode ? "☀" : "☾"}
+          <span className="theme-icon sun">☀</span>
+          <span className="theme-icon moon">☾</span>
         </button>
       </div>
     </nav>
@@ -417,6 +424,7 @@ function Analyzer() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
 
   async function handleAnalyze() {
     setError("");
@@ -539,6 +547,7 @@ function Analyzer() {
               mlPrediction={
                 result.security_evidence?.ml_prediction
               }
+              evidenceChain={result?.evidence_chain || []}
             />
 
             <SafeAction
@@ -703,6 +712,11 @@ export default function App() {
       <Navbar
         darkMode={darkMode}
         setDarkMode={setDarkMode}
+        onAnalyze={() =>
+          document.getElementById("analyzer")?.scrollIntoView({
+            behavior: "smooth",
+          })
+        }
       />
 
       <Hero />
