@@ -24,9 +24,9 @@ Output: the final structured JSON from the LLM reasoning layer -
     }
 """
 
-from ai_engine.ml_signal_extractor import get_ml_evidence
-from ai_engine.rule_engine import run_security_engine
-from ai_engine.llm import reason_over_evidence
+from ml_signal_extractor import get_ml_evidence
+from rule_engine import run_security_engine
+from llm import reason_over_evidence
 
 
 def analyze(extracted_data: dict) -> dict:
@@ -40,7 +40,11 @@ def analyze(extracted_data: dict) -> dict:
     ml_evidence = get_ml_evidence(extracted_data)
 
     # 2. Get rule-based evidence (URL analysis + phishing text rules)
-    security_evidence = run_security_engine(extracted_data)
+    # ml_evidence is passed through so calculate_risk_score() can factor
+    # in the ML text scam probability, not just rule-based boolean flags
+    # (fixes: 99%+ ML scam probability being rated LOW when no rule
+    # flags happened to trigger - see risk_rules.py fix)
+    security_evidence = run_security_engine(extracted_data, ml_evidence)
 
     # 3. Merge into one combined evidence dict
     combined_evidence = {
@@ -55,6 +59,26 @@ def analyze(extracted_data: dict) -> dict:
 
 
 def analyze_from_extraction(extraction_output: dict, image_path: str = None) -> dict:
+    """
+    THE FUNCTION MEMBER 2 SHOULD CALL.
+
+    Accepts pipeline_service.run_pipeline()'s actual output shape as-is:
+        {
+            "input_type": str,
+            "text": str,
+            "urls": list[str],
+            "claimed_organization": str,
+            "entities": {"phone_numbers": [...], "emails": [...]}
+        }
+
+    Bridges the field-name difference ("text" -> "extracted_text")
+    internally, so Member 2 never needs to know or care about the
+    ai_engine contract's exact key names - they just pass their own
+    extraction output straight through.
+
+    image_path is passed separately since run_pipeline() consumes the
+    uploaded file but doesn't return the path in its output dict.
+    """
     bridged_input = {
         "extracted_text": extraction_output.get("text", "") or "",
         "urls": extraction_output.get("urls", []) or [],
@@ -62,12 +86,7 @@ def analyze_from_extraction(extraction_output: dict, image_path: str = None) -> 
         "image_path": image_path,
     }
 
-    final_result = analyze(bridged_input)
-
-    return {
-        **extraction_output,
-        **final_result
-    }
+    return analyze(bridged_input)
 
 
 if __name__ == "__main__":
