@@ -1,46 +1,149 @@
-import React, { useEffect, useState } from "react";
-
-import InputTabs from "./components/InputTabs";
-import RiskCard from "./components/RiskCard";
-import IndicatorList from "./components/IndicatorList";
-import EvidenceChain from "./components/EvidenceChain";
-import SafeAction from "./components/SafeAction";
-import WhyPanel from "./components/WhyPanel";
-
+import React, { useEffect, useRef, useState } from "react";
 import { analyzeInput } from "./services/api";
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+const DEMO_TEXT =
+  "URGENT! Your SBI account will be blocked. Verify your OTP immediately at https://sbi-secure-login.xyz";
+const DEMO_URL = "https://sbi-secure-login.xyz";
 
-function Navbar({ darkMode, setDarkMode }) {
+const components = [
+  {
+    id: "input",
+    number: "01",
+    title: "Multimodal Input",
+    short: "Message • URL • Screenshot",
+    description:
+      "Users can provide suspicious content in the format they already have. No direct WhatsApp access is required.",
+    points: ["Paste a message", "Check a URL", "Upload a screenshot"],
+  },
+  {
+    id: "extract",
+    number: "02",
+    title: "Evidence Extraction",
+    short: "OCR • QR • Entities",
+    description:
+      "The system extracts visible text, URLs, claimed organizations and QR payloads before deeper analysis begins.",
+    points: ["OCR text extraction", "QR decoding", "Organization detection"],
+  },
+  {
+    id: "detect",
+    number: "03",
+    title: "Multi-Signal Detection",
+    short: "Rules • ML • Vision",
+    description:
+      "Deterministic security rules, ML language signals and visual observations create a richer evidence set.",
+    points: ["Domain checks", "Phishing-like language", "Visual cues"],
+  },
+  {
+    id: "reason",
+    number: "04",
+    title: "Evidence Reasoning",
+    short: "Cross-modal AI",
+    description:
+      "The reasoning layer connects independent signals instead of relying on one black-box prediction.",
+    points: [
+      "Claim vs evidence",
+      "Cross-modal consistency",
+      "Explainable reasoning",
+    ],
+  },
+];
+
+const workflow = [
+  {
+    number: "01",
+    title: "Upload or Paste",
+    text: "Share the suspicious message, URL or screenshot.",
+  },
+  {
+    number: "02",
+    title: "Extract",
+    text: "OCR, URL parsing, QR decoding and entity extraction prepare the evidence.",
+  },
+  {
+    number: "03",
+    title: "Analyze",
+    text: "Rules, ML, URL checks and visual analysis inspect independent signals.",
+  },
+  {
+    number: "04",
+    title: "Correlate",
+    text: "Cross-modal reasoning checks whether the claim matches the evidence.",
+  },
+  {
+    number: "05",
+    title: "Explain",
+    text: "The system turns technical findings into an understandable explanation.",
+  },
+  {
+    number: "06",
+    title: "Act Safely",
+    text: "Users get a practical next step and an independent verification path.",
+  },
+];
+
+function Icon({ type }) {
+  const map = {
+    shield: "◈",
+    link: "↗",
+    image: "▧",
+    graph: "⌁",
+    search: "⌕",
+    eye: "◉",
+    check: "✓",
+    book: "▤",
+    help: "?",
+  };
+
+  return <span className={`icon icon-${type}`}>{map[type] || "•"}</span>;
+}
+
+function Navbar({ onAnalyze, darkMode, setDarkMode }) {
   return (
     <header className="navbar">
-      <a className="brand" href="#top" aria-label="Digital Safety Copilot home">
+      <a
+        className="brand"
+        href="#top"
+        aria-label="Digital Safety Copilot home"
+      >
         <span className="brand-mark">
           <Icon type="shield" />
         </span>
+
         <span>
           <strong>Digital Safety</strong> <small>Copilot</small>
         </span>
       </a>
 
-      <div className="nav-links">
+      <nav className="nav-links" aria-label="Main navigation">
         <a href="#features">Features</a>
-        <a href="#overview">Overview</a>
-        <a href="#workflow">Workflow</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#workflow">How It Works</a>
         <a href="#about">About</a>
+        <a href="#help">Help & Feedback</a>
         <a href="#docs">Documentation</a>
+      </nav>
 
       <div className="nav-actions">
         <button
-          type="button"
           className="theme-toggle"
-          onClick={() => setDarkMode((prev) => !prev)}
-          aria-label="Toggle dark and light mode"
-          title="Toggle theme"
+          type="button"
+          onClick={() => setDarkMode((current) => !current)}
+          aria-label={
+            darkMode ? "Switch to light mode" : "Switch to dark mode"
+          }
+          title={darkMode ? "Light mode" : "Dark mode"}
         >
-          {darkMode ? "☀" : "☾"}
+          <span className={`theme-option ${!darkMode ? "active" : ""}`}>
+            ☀️
+          </span>
+
+          <span className={`theme-option ${darkMode ? "active" : ""}`}>
+            🌙
+          </span>
+        </button>
+
+        <button className="nav-cta" type="button" onClick={onAnalyze}>
+          Analyze Now
         </button>
       </div>
     </header>
@@ -126,7 +229,11 @@ function Hero({ onAnalyze }) {
         </p>
 
         <div className="hero-actions">
-          <button className="primary-button" onClick={onAnalyze} type="button">
+          <button
+            className="primary-button"
+            onClick={onAnalyze}
+            type="button"
+          >
             Analyze Something <span>→</span>
           </button>
 
@@ -165,7 +272,6 @@ function Hero({ onAnalyze }) {
     </section>
   );
 }
-
 function VideoSection() {
   return (
     <section className="video-section">
@@ -219,14 +325,51 @@ function VideoSection() {
 
 function OverviewSection() {
   return (
-    <section className="overview-section" id="about">
-      <div className="section-label">OVERVIEW</div>
+    <section
+  className="overview-section"
+  id="about"
+  style={{
+    overflow: "visible",
+  }}
+>
+      <div
+        className="overview-grid"
+  style={{
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  alignItems: "center",
+  gap: "40px",
+  width: "300%",
+  maxWidth: "1500px",
+  margin: "0 auto",
+  paddingRight: "40px",
+  boxSizing: "border-box",
+}}
+>
+      
+        {/* LEFT — TEXT */}
+        <div
+          className="overview-copy"
+          style={{
+  width: "100%",
+  minWidth: 0,
+  maxWidth: "100%",
+  alignSelf: "center",
+  margin: "0",
+  transform: "translateY(10px)",
+}}
+        >
+          <div className="section-label">OVERVIEW</div>
 
-      <div className="overview-grid">
-        <div className="overview-copy">
-          <h2>
-            A safety assistant built around <span>evidence.</span>
-          </h2>
+          <h2
+  style={{
+    fontSize: "clamp(48px, 4vw, 68px)",
+    lineHeight: "0.98",
+    letterSpacing: "-0.04em",
+  }}
+>
+  A safety assistant built around <span>evidence.</span>
+</h2>
 
           <p>
             Instead of asking users to trust a single prediction, Digital Safety
@@ -243,7 +386,24 @@ function OverviewSection() {
           </div>
         </div>
 
-        <div className="overview-art">
+        {/* RIGHT — DIAGRAM */}
+        <div
+          className="overview-art"
+          
+  style={{
+    width: "100%",
+    maxWidth: "620px",
+    minWidth: 0,
+    position: "relative",
+    margin: "0 auto",
+    justifySelf: "center",
+    alignSelf: "center",
+    transform: "scale(0.62)",
+    transformOrigin: "center center",
+    overflow: "visible",
+  }}
+>
+        
           <div className="art-grid" />
 
           <div className="art-card art-card-main">
@@ -601,7 +761,6 @@ function Analyzer({ onClose }) {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
 
   const runDemo = () => {
     setResult(null);
@@ -817,26 +976,30 @@ function Analyzer({ onClose }) {
                   )}
               </div>
 
-      {result && (
-        <section className="results">
-          <RiskCard risk={result.risk} />
+              <div className="result-columns">
+                <section className="result-panel">
+                  <div className="result-panel-title">
+                    Detected Indicators
+                  </div>
 
-          <div className="two-col">
-            <IndicatorList
-              indicators={
-                result.security_evidence?.indicators || []
-              }
-              mlPrediction={
-                result.security_evidence?.ml_prediction
-              }
-            />
+                  {indicators.length ? (
+                    <div className="indicator-list">
+                      {indicators.map((item) => (
+                        <div
+                          className={`result-indicator ${item.severity || ""}`}
+                          key={item.code}
+                        >
+                          <div>
+                            <span className="indicator-dot" />
 
-            <SafeAction
-              actions={
-                result.risk?.safe_actions || []
-              }
-            />
-          </div>
+                            <strong>{item.label}</strong>
+
+                            {item.severity && (
+                              <span className="indicator-severity">
+                                {item.severity}
+                              </span>
+                            )}
+                          </div>
 
                           <small>{item.evidence}</small>
                         </div>
@@ -1052,11 +1215,6 @@ export default function App() {
         onAnalyze={() => setAnalyzerOpen(true)}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
-        onAnalyze={() =>
-          document.getElementById("analyzer")?.scrollIntoView({
-            behavior: "smooth",
-          })
-        }
       />
 
       <main>
