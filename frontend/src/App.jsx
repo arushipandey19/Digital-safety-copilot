@@ -297,16 +297,15 @@ function VideoSection() {
 
       <div className="video-card">
         <video
-          className="security-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          <source src="/cyber-fraud-awareness.mp4" type="video/mp4" />
-          Your browser does not support HTML5 video.
-        </video>
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+  className="fraud-video"
+>
+  <source src="/fraud-awareness.mp4" type="video/mp4" />
+</video>
 
         <div className="video-overlay" />
 
@@ -315,7 +314,7 @@ function VideoSection() {
         </div>
 
         <div className="video-caption">
-          <strong>Think Before You Click</strong>
+          <strong>HOW IT WORKS</strong>
           <span>Suspicious links • OTP scams • Fake messages</span>
         </div>
       </div>

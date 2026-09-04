@@ -987,28 +987,21 @@ body.dark-mode .navbar {
 
 .video-card {
   position: relative;
-
-  min-height: 350px;
-
+  width: 100%;
   overflow: hidden;
-
   border: 1px solid var(--border);
   border-radius: 24px;
-
   background: var(--surface);
-
   box-shadow: var(--shadow-lg);
 }
 
-.security-video {
+.video-card video {
   width: 100%;
-  height: 100%;
-  min-height: 350px;
-
+  height: auto;
   display: block;
-
-  object-fit: cover;
+  object-fit: contain;
 }
+
 
 .video-overlay {
   position: absolute;
