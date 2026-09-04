@@ -14,7 +14,7 @@ from phishing_rules import run_all_phishing_rules  # security_engine/rules/phish
 from risk_rules import calculate_risk_score        # security_engine/rules/risk_rules.py
 
 
-def run_security_engine(extracted_data: dict) -> dict:
+def run_security_engine(extracted_data: dict, ml_evidence: dict = None) -> dict:
     """
     The single function the rest of the team's pipeline calls.
 
@@ -22,6 +22,11 @@ def run_security_engine(extracted_data: dict) -> dict:
         - "extracted_text": str
         - "urls": list[str]  (can be empty)
         - "claimed_organization": str | None
+
+    ml_evidence (optional): pass get_ml_evidence()'s output here so the
+    risk score can factor in the ML text scam probability, not just
+    rule-based boolean flags. Without it, calculate_risk_score() falls
+    back to rule-flags-only scoring (the original behavior).
     """
     text = extracted_data.get("extracted_text", "") or ""
     urls = extracted_data.get("urls", []) or []
@@ -30,7 +35,7 @@ def run_security_engine(extracted_data: dict) -> dict:
     url_evidence = analyze_urls(urls, claimed_organization)
     text_evidence = run_all_phishing_rules(text)
 
-    risk_result = calculate_risk_score(url_evidence, text_evidence)
+    risk_result = calculate_risk_score(url_evidence, text_evidence, ml_evidence)
 
     # Combine everything into one flat evidence dict for the correlation layer
     security_evidence = {
@@ -52,6 +57,7 @@ def run_security_engine(extracted_data: dict) -> dict:
         "risk_score": risk_result["risk_score"],
         "risk_level": risk_result["risk_level"],
         "triggered_flags": risk_result["triggered_flags"],
+        "ml_contribution": risk_result.get("ml_contribution", 0),
     }
 
     return security_evidence
